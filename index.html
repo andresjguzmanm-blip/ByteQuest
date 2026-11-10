@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByteQuest - Computer Science</title>
+
+<style>
+:root {
+ --green:#58cc02;
+ --darkgreen:#46a302;
+ --navy:#20304a;
+ --muted:#718096;
+ --line:#e5eaf0;
+ --bg:#f6f8fb;
+ --red:#ff4b4b;
+}
+* {box-sizing:border-box}
+body {
+ margin:0;
+ background:var(--bg);
+ font-family:"Segoe UI",Arial,sans-serif;
+ color:var(--navy);
+}
+.top {
+ height:66px;
+ background:white;
+ border-bottom:2px solid var(--line);
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ padding:0 25px;
+ position:sticky;
+ top:0;
+}
+.logo {font-weight:1000;font-size:24px;color:var(--green)}
+.stats {display:flex;gap:20px;font-weight:900}
+.wrap {max-width:900px;margin:34px auto;padding:0 20px}
+.layout {display:grid;grid-template-columns:1fr 220px;gap:26px}
+.panel,.sidecard {
+ background:white;
+ border:2px solid var(--line);
+ border-radius:20px;
+ padding:25px;
+}
+.kicker {
+ font-size:12px;
+ font-weight:900;
+ letter-spacing:1.4px;
+ color:#8794a8;
+}
+h1 {font-size:28px}
+.sub {color:var(--muted);line-height:1.5}
+.progressrow {display:flex;gap:12px;align-items:center;margin:24px 0}
+.bar {height:13px;background:#e9eef3;border-radius:20px;overflow:hidden;flex:1}
+.fill {height:100%;background:var(--green);transition:.3s}
+.topic {color:#20a0a0;font-weight:900;font-size:13px}
+.question {font-size:22px;font-weight:850;line-height:1.4;margin:20px 0}
+.options {display:grid;gap:11px}
+.option {
+ border:2px solid #dce3eb;
+ border-bottom-width:4px;
+ border-radius:14px;
+ background:white;
+ padding:15px;
+ text-align:left;
+ font-size:16px;
+ font-weight:700;
+ color:var(--navy);
+ cursor:pointer;
+}
+.option:hover {background:#f7fbff;border-color:#aab8c9}
+.option.correct {border-color:var(--green);background:#efffe5}
+.option.wrong {border-color:var(--red);background:#fff0f0}
+.feedback {
+ display:none;
+ margin-top:18px;
+ padding:15px;
+ border-radius:14px;
+ line-height:1.5;
+ font-size:14px;
+}
+.feedback.good {display:block;background:#efffe5;border:1px solid #b9ed9a}
+.feedback.bad {display:block;background:#fff2f2;border:1px solid #ffc5c5}
+.actions {display:flex;justify-content:space-between;margin-top:24px;gap:12px}
+.btn {
+ border:0;border-radius:13px;padding:14px 22px;
+ font-weight:950;font-size:15px;cursor:pointer;
+}
+.btn-main {background:var(--green);color:white;box-shadow:0 4px 0 var(--darkgreen)}
+.btn-main:disabled {background:#cbd5df;box-shadow:0 4px 0 #b8c2cc;cursor:not-allowed}
+.btn-quiet {background:#eef2f6;color:#627086}
+.side {display:grid;gap:14px}
+.sidecard {padding:18px}
+.sidecard h3 {font-size:13px;color:#8a97a9}
+.big {font-size:25px;font-weight:1000}
+.unit {font-size:12px;color:var(--muted)}
+.lesson {padding:9px;background:#f2f5f8;border-radius:10px;margin:7px 0;font-size:13px;font-weight:800}
+.lesson.active {background:#e9fbdc;color:#398d00}
+.intro,.end {text-align:center;padding:35px 15px}
+.mascot {font-size:65px}
+.small {font-size:12px;color:#8793a4}
+@media(max-width:720px) {
+ .layout {grid-template-columns:1fr}
+ .side {grid-template-columns:1fr 1fr}
+ .question {font-size:20px}
+ .stats {gap:10px;font-size:13px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="top">
+ <div class="logo">⚡ ByteQuest</div>
+ <div class="stats">
+  <div>🔥 <b id="streak">0</b></div>
+  <div>❤️ <b id="hearts">5</b></div>
+  <div>⭐ <b id="xp">0</b> XP</div>
+ </div>
+</header>
+
+<main class="wrap">
+<div class="layout">
+
+<section class="panel" id="main">
+ <div class="intro">
+  <div class="mascot">🦉</div>
+  <div class="kicker">COMPUTER SCIENCE · TOPIC 1</div>
+  <h1>¡Aprende Data Representation!</h1>
+  <p class="sub">
+   Una aventura de preguntas rápidas al estilo Duolingo.
+   Responde, gana XP y domina los conceptos.
+  </p>
+  <p class="sub">
+   <b>47 preguntas</b><br>
+   Number systems · Text, sound and images · Data storage and compression
+  </p>
+  <button class="btn btn-main" onclick="start()">¡Empezar lección!</button>
+  <p class="small">
+   Preguntas basadas en tu documento Kognity.
+   El contenido está en inglés para practicar la terminología del IB.
+  </p>
+ </div>
+</section>
+
+<aside class="side">
+ <div class="sidecard">
+  <h3>TU PROGRESO</h3>
+  <div class="big" id="sideXp">0 ⭐</div>
+  <div class="unit">Puntos de experiencia</div>
+ </div>
+
+ <div class="sidecard">
+  <h3>UNIDADES</h3>
+  <div class="lesson active">01 · Number systems</div>
+  <div class="lesson">02 · Text, sound and images</div>
+  <div class="lesson">03 · Data storage</div>
+ </div>
+
+ <div class="sidecard">
+  <h3>OBJETIVO DIARIO</h3>
+  <div class="big">20 XP</div>
+  <div class="unit">10 XP por respuesta correcta</div>
+ </div>
+</aside>
+
+</div>
+</main>
+
+<script>
+
+const questions = [
+
+["Number systems","A register is a high-speed area of memory located within the CPU. What is it used for?",["Temporarily storing data during the fetch–decode–execute cycle","Permanently storing files","Connecting the CPU to the internet","Displaying graphics"],0,"A register temporarily stores data during the fetch–decode–execute cycle."],
+["Number systems","Convert −11 into 8-bit two’s complement.",["11110101","00001011","11110100","10001011"],0,"Start with 00001011, invert the bits to get 11110100, then add 1: 11110101."],
+["Number systems","Convert positive denary 76 into an 8-bit two’s complement value.",["01001100","00101100","11001100","01001010"],0,"76 in binary using eight bits is 01001100."],
+["Number systems","What is the result of a 2-bit logical right shift on 00110001?",["00001100","00011000","11000100","00110000"],0,"A logical right shift moves bits right and adds zeros on the left."],
+["Number systems","What is the result of a 1-bit logical left shift on 00110001?",["01100010","00011000","00110010","11000010"],0,"A logical left shift moves bits one place to the left and adds zero on the right."],
+["Number systems","How many digits does the denary number system use?",["10","2","8","16"],0,"Denary uses ten digits, from 0 to 9."],
+["Number systems","What happens when a value greater than 255 is stored in an 8-bit register?",["Overflow error","Syntax error","Underflow warning","No change"],0,"An 8-bit unsigned value cannot exceed 255."],
+["Number systems","What is the result of adding 10101010 to 00110011 in binary?",["11011101","10111101","11101101","11010111"],0,"The binary sum is 11011101."],
+["Number systems","One example of hexadecimal usage is…",["Displaying error messages","Machine code programming","High-level language programming","Designing presentation files"],0,"Hexadecimal can be used to display error messages."],
+["Number systems","What is a benefit of using hexadecimal instead of binary?",["Shorter representation on the screen","Uses less memory space","Faster program execution","Faster data transmission"],0,"Hexadecimal produces a shorter representation than binary."],
+["Number systems","An overflow error will most likely cause the computer system to…",["Crash","Run faster","Compress files","Increase memory"],0,"An overflow error may cause the system to crash."],
+["Text, sound and images","Image file types such as .jpg, .png and .gif use different ______ methods to store image data as binary.",["Encoding","Sampling","Encryption","Compression"],0,"These file types use different encoding methods."],
+["Text, sound and images","Data from the physical world is continuously variable and changes in a smooth curve. This is described as…",["Analogue","Digital","Discrete","Binary"],0,"Analogue data changes continuously."],
+["Text, sound and images","Which character set can represent emojis and characters from different languages?",["Unicode","ASCII only","Hexadecimal","Denary"],0,"Unicode can represent characters in every language, including emojis."],
+["Text, sound and images","Which of the following file types is an example of a sound file?",[".mp3",".jpg",".png",".gif"],0,"MP3 is a sound file format."],
+["Text, sound and images","How many characters can standard ASCII represent?",["128","256","64","512"],0,"Standard ASCII represents 128 characters."],
+["Text, sound and images","If A is 01000001 in binary, what is the denary number of B?",["66","65","67","64"],0,"A is 65, so B is 66."],
+["Text, sound and images","How many bits are needed to store the phrase 'I love computer' using 8 bits per character?",["120","112","128","15"],0,"There are 15 characters including spaces. 15 × 8 = 120 bits."],
+["Text, sound and images","What does ASCII stand for?",["American Standard Code for Information Interchange","Advanced System for Character Information Integration","American Software Code for Internet Information","Automated Standard Character Input Interface"],0,"ASCII stands for American Standard Code for Information Interchange."],
+["Text, sound and images","Increasing colour depth and resolution will ______ the image file size.",["Increase","Decrease","Keep unchanged","Remove"],0,"Higher colour depth and resolution require more data."],
+["Text, sound and images","How many bits are needed to represent 512 colours in an image?",["9","8","10","512"],0,"log₂(512) = 9 bits."],
+["Text, sound and images","What is the number of bits per pixel called?",["Colour depth","Resolution","Sample rate","Bit rate"],0,"Colour depth refers to the number of bits used for each pixel's colour."],
+["Text, sound and images","A picture described as 1080 × 720 is specifying its…",["Resolution","Colour depth","File format","Sample resolution"],0,"Resolution describes the width and height of an image in pixels."],
+["Text, sound and images","What is the hexadecimal value for black?",["000000","FFFFFF","0000FF","808080"],0,"Black is represented by 000000."],
+["Text, sound and images","What is the hexadecimal value for white?",["FFFFFF","000000","FF0000","00FF00"],0,"White is represented by FFFFFF."],
+["Text, sound and images","The more bits used to measure an analogue wave, the…",["More accurate the sound, and the bigger the file size will be","Less accurate the sound, and the smaller the file will be","More accurate the sound, and the smaller the file will be","No change to accuracy or file size"],0,"More bits provide more precise measurements but increase file size."],
+["Text, sound and images","The number of bits used to record each measurement during sampling is called…",["Sample resolution","Sample rate","Colour depth","Bit rate"],0,"This is called sample resolution."],
+["Text, sound and images","Digital sounds used by computers are made up of…",["Discrete signals","Continuous analogue waves","Pixels","Hexadecimal characters"],0,"Digital sounds consist of discrete signals."],
+["Text, sound and images","Which character set allows computers to represent characters from languages worldwide?",["Unicode","Denary","Binary","RLE"],0,"Unicode supports characters from languages around the world."],
+["Data Storage and Compression","Two drawbacks of lossless compression compared with lossy compression are a ______ file size and ______ transmission speed.",["Larger; slower","Smaller; faster","Larger; faster","Smaller; slower"],0,"Lossless compression can produce larger files and slower transmission."],
+["Data Storage and Compression","Which does NOT describe how lossy compression reduces the size of a sound file?",["Data will not be removed","Some data is permanently removed","The resulting file can be smaller","Some original information is discarded"],0,"Lossy compression permanently removes some data."],
+["Data Storage and Compression","Which lossless compression technique encodes runs of repeated data as a value and a number of repetitions?",["Run Length Encoding (RLE)","Unicode","ASCII","Two’s complement"],0,"RLE records repeating data and the number of repetitions."],
+["Data Storage and Compression","What is the effect of compressing a movie file using lossy compression?",["Decreased file size and quality","Increased file size and quality","Decreased file size with identical quality","No change"],0,"Lossy compression reduces file size but also reduces quality."],
+["Data Storage and Compression","Which does NOT describe how lossless compression reduces the size of a sound file?",["Discards any unnecessary sounds","Stores data in a different way","Preserves all original data","Can reconstruct the original file exactly"],0,"Lossless compression does not discard data."],
+["Data Storage and Compression","Which two categories of compression are commonly used?",["Lossy and lossless","Lossless and raw","Raw and binary","Analogue and digital"],0,"Lossy removes some data; lossless retains all data."],
+["Data Storage and Compression","Files that have had no compression applied are called ______ files.",["Raw","Lossy","Lossless","Encoded"],0,"Files without compression are called raw files."],
+["Data Storage and Compression","Compression is normally used for sound files, ______ files and video files.",["Image","Text","Program","Database"],0,"Compression is commonly used for sound, image and video files."],
+["Data Storage and Compression","Which is NOT a benefit of file compression?",["Reducing the file quality","Saving storage space","Increasing data transmission speed","Using less bandwidth"],0,"Reducing quality is not an aim of compression."],
+["Data Storage and Compression","A compression ______ is a set of instructions applied to a file to reduce its size.",["Algorithm","Register","Resolution","Character set"],0,"A compression algorithm reduces the size of a file."],
+["Data Storage and Compression","Which is an aim of file compression?",["Save storage space","Reduce file quality","Increase file size","Remove all metadata"],0,"Compression aims to save storage space."],
+["Data Storage and Compression","A USB drive has 16 GiB free. Approximately how many photographs of 128 KiB can it hold?",["131,072","16,384","65,536","262,144"],0,"16 × 1024 × 1024 ÷ 128 = 131,072 photographs."],
+["Data Storage and Compression","Calculate the size of a 3-minute sound file at 44.1 kHz and 8-bit sample resolution, in KiB.",["7,751.95 KiB","775.20 KiB","77,519.5 KiB","2,153 KiB"],0,"(3 × 60 × 44,100 × 8) ÷ 8 ÷ 1024 = 7,751.95 KiB."],
+["Data Storage and Compression","Calculate the size of a 50-second sound file at 44.1 kHz and 8-bit sample resolution, in KiB.",["2,153 KiB","7,751.95 KiB","1,024 KiB","4,410 KiB"],0,"(50 × 44,100 × 8) ÷ 8 ÷ 1024 ≈ 2,153 KiB."],
+["Data Storage and Compression","Calculate the file size of an image with 2048 × 720 resolution and 256 colour values, in MiB.",["1.41 MiB","2.81 MiB","0.70 MiB","14.1 MiB"],0,"256 colours require 8 bits per pixel. The result is approximately 1.41 MiB."],
+["Data Storage and Compression","Which file type will most likely have the largest file size?",["1 hour of a movie file","10 pages of a text file","1 hour of a music file","10 pages of programming code"],0,"A one-hour movie file is likely to be the largest."],
+["Number systems","In the expression 1 GiB = 2ˣ bytes, what is x?",["30","10","20","32"],0,"1 GiB = 2³⁰ bytes, so x = 30."]
+];
+
+let order = [];
+let idx = 0;
+let xp = 0;
+let hearts = 5;
+let streak = 0;
+let answered = false;
+let correctCount = 0;
+
+const $ = id => document.getElementById(id);
+
+function shuffle(a) {
+ return [...a].sort(() => Math.random() - 0.5);
+}
+
+function start() {
+ order = shuffle(questions.map((q,i) => i));
+ idx = 0;
+ xp = 0;
+ hearts = 5;
+ streak = 0;
+ correctCount = 0;
+ updateStats();
+ render();
+}
+
+function updateStats() {
+ $("xp").textContent = xp;
+ $("hearts").textContent = hearts;
+ $("streak").textContent = streak;
+ $("sideXp").textContent = xp + " ⭐";
+}
+
+function render() {
+ if (idx >= order.length || hearts <= 0) {
+  finish();
+  return;
+ }
+
+ answered = false;
+ let q = questions[order[idx]];
+
+ $("main").innerHTML = `
+ <div class="kicker">BYTEQUEST · LECCIÓN</div>
+ <div class="progressrow">
+  <div class="bar">
+   <div class="fill" style="width:${idx/order.length*100}%"></div>
+  </div>
+  <b>${idx+1}/${order.length}</b>
+ </div>
+
+ <div class="topic">${q[0]}</div>
+ <div class="question">${q[1]}</div>
+
+ <div class="options">
+  ${q[2].map((o,i) =>
+   `<button class="option" onclick="choose(${i})">
+   ${String.fromCharCode(65+i)}. ${o}
+   </button>`
+  ).join("")}
+ </div>
+
+ <div id="feedback" class="feedback"></div>
+
+ <div class="actions">
+  <button class="btn btn-quiet" onclick="quit()">Salir</button>
+  <button id="next" class="btn btn-main" disabled onclick="next()">
+   Comprobar
+  </button>
+ </div>
+ `;
+}
+
+function choose(i) {
+ if (answered) return;
+
+ let q = questions[order[idx]];
+ let buttons = [...document.querySelectorAll(".option")];
+
+ answered = true;
+ let ok = i === q[3];
+
+ buttons.forEach((b,n) => {
+  b.disabled = true;
+
+  if (n === q[3]) b.classList.add("correct");
+  if (n === i && !ok) b.classList.add("wrong");
+ });
+
+ let f = $("feedback");
+
+ f.className = "feedback " + (ok ? "good" : "bad");
+
+ f.innerHTML =
+  (ok
+   ? "<b>¡Excelente! +10 XP 🎉</b>"
+   : "<b>¡Casi! La respuesta correcta está marcada arriba.</b>"
+  ) + "<br>" + q[4];
+
+ if (ok) {
+  xp += 10;
+  streak++;
+  correctCount++;
+ } else {
+  hearts = Math.max(0, hearts-1);
+  streak = 0;
+ }
+
+ updateStats();
+
+ $("next").disabled = false;
+ $("next").textContent =
+  idx === order.length-1 ? "Ver resultados" : "Continuar";
+}
+
+function next() {
+ if (!answered) return;
+ idx++;
+ render();
+}
+
+function quit() {
+ if (confirm("¿Quieres salir de la lección? Tu progreso se reiniciará.")) {
+  location.reload();
+ }
+}
+
+function finish() {
+ const pct = Math.round(correctCount/questions.length*100);
+
+ $("main").innerHTML = `
+ <div class="end">
+  <div class="mascot">${pct >= 80 ? "🏆" : "📚"}</div>
+
+  <div class="kicker">LECCIÓN COMPLETADA</div>
+
+  <h1>${hearts === 0 ? "¡Buen intento!" : "¡Lo lograste!"}</h1>
+
+  <p class="sub">
+   Terminaste esta ronda de Computer Science.
+  </p>
+
+  <div style="display:flex;justify-content:center;gap:35px;margin:26px 0">
+
+   <div>
+    <div class="big">${correctCount}/${questions.length}</div>
+    <div class="unit">Correctas</div>
+   </div>
+
+   <div>
+    <div class="big">${pct}%</div>
+    <div class="unit">Precisión</div>
+   </div>
+
+   <div>
+    <div class="big">${xp}</div>
+    <div class="unit">XP ganados</div>
+   </div>
+
+  </div>
+
+  <p class="sub">
+   ${pct >= 80
+    ? "¡Gran dominio del tema!"
+    : "Vuelve a intentarlo para reforzar los conceptos."
+   }
+  </p>
+
+  <button class="btn btn-main" onclick="start()">
+   Repetir lección
+  </button>
+ </div>
+ `;
+}
+
+</script>
+</body>
+</html>
