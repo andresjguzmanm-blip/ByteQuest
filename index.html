@@ -156,6 +156,7 @@ h1 {font-size:28px}
   <div class="lesson active">01 · Number systems</div>
   <div class="lesson">02 · Text, sound and images</div>
   <div class="lesson">03 · Data storage</div>
+  <div class="lesson">04 · Data Transmission</div>
  </div>
 
  <div class="sidecard">
@@ -218,6 +219,41 @@ const questions = [
 ["Data Storage and Compression","Calculate the file size of an image with 2048 × 720 resolution and 256 colour values, in MiB.",["1.41 MiB","2.81 MiB","0.70 MiB","14.1 MiB"],0,"256 colours require 8 bits per pixel. The result is approximately 1.41 MiB."],
 ["Data Storage and Compression","Which file type will most likely have the largest file size?",["1 hour of a movie file","10 pages of a text file","1 hour of a music file","10 pages of programming code"],0,"A one-hour movie file is likely to be the largest."],
 ["Number systems","In the expression 1 GiB = 2ˣ bytes, what is x?",["30","10","20","32"],0,"1 GiB = 2³⁰ bytes, so x = 30."]
+["Data Transmission","Which of the following is true about encryption?",["It prevents unauthorised people from understanding the message","It makes data transmission faster","It reduces file size","It detects errors in data"],0,"Encryption converts plaintext into ciphertext so unauthorised people cannot understand the message."],
+
+["Data Transmission","A company wants to send a highly secured contract to a new employee over the internet. Which encryption method should it use?",["Asymmetric","Symmetric","Caesar cipher","Parity check"],0,"Asymmetric encryption uses two different keys: a public key and a private key."],
+
+["Data Transmission","Two students want to exchange encrypted project files using a simple and fast encryption method. Which should they use?",["Symmetric","Asymmetric","Unicode","Echo check"],0,"Symmetric encryption is faster and easier because it uses one secret key to encrypt and decrypt data."],
+
+["Data Transmission","Which of the following is NOT one of the asymmetric encryption steps?",["Both the sender and receiver exchange the same key","The receiver generates public and private keys","The receiver sends the public key to the sender","The receiver uses the private key to decrypt the message"],0,"Asymmetric encryption uses two different keys, not one shared secret key."],
+
+["Data Transmission","Which of the following is NOT one of the symmetric encryption steps?",["The sender replaces each letter with another one from the alphabet","Both users exchange the same secret key","The sender encrypts the message using the secret key","The receiver decrypts the message using the secret key"],0,"Replacing each letter with another letter describes a Caesar cipher, not a symmetric encryption process in general."],
+
+["Data Transmission","What is the name of the simple encryption algorithm that replaces each individual character with another character from the alphabet?",["Caesar cipher","Checksum","Parity check","Run Length Encoding"],0,"The Caesar cipher replaces each character with another character from the alphabet."],
+
+["Data Transmission","Which of the following items is NOT needed to perform the encryption process?",["Ciphertext","Plaintext","An algorithm","Encryption key"],0,"Encryption requires plaintext, an algorithm and an encryption key. Ciphertext is the result."],
+
+["Data Transmission","Which error detection method describes a situation where the sender receives the data back, but cannot determine whether an error occurred during the original transmission or the return transmission?",["Echo check","Checksum","Parity check","Check digit"],0,"In echo check, data could be corrupted when it is sent back to the original sender."],
+
+["Data Transmission","Which of the following methods is NOT used in detecting errors during data transmission?",["Check digit","Checksum","Parity check","Automatic Repeat Query (ARQ)"],0,"A check digit is used to validate data when it is entered, rather than detect transmission errors."],
+
+["Data Transmission","Which of the following ARQ steps is incorrect?",["The receiving computer recalculates the checksum value","The sender sends data requiring acknowledgement","The receiver sends a request when an error is detected","The sender resends data if no acknowledgement is received within a certain time"],0,"ARQ uses acknowledgements and timeouts to request retransmission when necessary."],
+
+["Data Transmission","What is the name of the error detection method that uses acknowledgements and timeouts?",["Automatic Repeat Query (ARQ)","Echo check","Parity check","Caesar cipher"],0,"ARQ uses acknowledgements and timeouts to manage retransmission of data."],
+
+["Data Transmission","A check digit is calculated by multiplying each digit by its position from right to left, adding the results and dividing by 11. Is the code number 235148 valid?",["Valid, because the remainder is 0","Invalid, because the remainder is 1","Invalid, because the total is 65","Valid, because the total is 60"],0,"2×6 + 3×5 + 5×4 + 1×3 + 4×2 + 8×1 = 66. 66 divided by 11 has a remainder of 0, so the check digit is valid."],
+
+["Data Transmission","Using odd parity, what should the parity bit be for the binary number 1000101?",["0","1","10","11"],0,"1000101 already contains an odd number of 1s. Therefore, the parity bit is 0."],
+
+["Data Transmission","Which of the following best describes half-duplex data transmission?",["Data is transmitted in both directions, but one direction at a time","Data is transmitted in both directions simultaneously","Data is transmitted in only one direction","Data cannot be transmitted between devices"],0,"Half-duplex allows communication in both directions, but only one direction at a time."],
+
+["Data Transmission","What does USB stand for?",["Universal Serial Bus","Universal System Binary","United Serial Board","Universal Software Bus"],0,"USB stands for Universal Serial Bus."],
+
+["Data Transmission","What is the main purpose of an error detection method?",["Maintain the accuracy of the data","Increase the speed of the CPU","Reduce the size of files","Encrypt all transmitted data"],0,"Error detection methods help identify errors that might occur during data transmission."],
+
+["Data Transmission","Which byte has been transmitted incorrectly if an odd parity check has been used?",["01001011","11000001","01000000","01001100"],0,"01001011 contains an even number of 1s, so it does not satisfy odd parity."],
+
+["Data Transmission","Which byte has been transmitted incorrectly if an even parity check has been used?",["01001001","11001001","01001000","01001110"],0,"01001001 contains an odd number of 1s, so it does not satisfy even parity."]
 ];
 
 let order = [];
