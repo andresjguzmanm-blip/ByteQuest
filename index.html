@@ -157,6 +157,7 @@ h1 {font-size:28px}
   <div class="lesson">02 · Text, sound and images</div>
   <div class="lesson">03 · Data storage</div>
   <div class="lesson">04 · Data Transmission</div>
+  <div class="lesson">05 · Hardware</div>
  </div>
 
  <div class="sidecard">
@@ -254,6 +255,79 @@ const questions = [
 ["Data Transmission","Which byte has been transmitted incorrectly if an odd parity check has been used?",["01001011","11000001","01000000","01001100"],0,"01001011 contains an even number of 1s, so it does not satisfy odd parity."],
 
 ["Data Transmission","Which byte has been transmitted incorrectly if an even parity check has been used?",["01001001","11001001","01001000","01001110"],0,"01001001 contains an odd number of 1s, so it does not satisfy even parity."]
+[
+  ["Hardware", "Which of the following is NOT a role of a router?", ["Assigning MAC addresses to devices", "Finding the most efficient route", "Connecting different networks", "Forwarding data packets"], 0, "MAC addresses are assigned to devices by their manufacturers, not by routers."],
+
+  ["Hardware", "Which network hardware device connects a LAN to the internet?", ["Switch", "Router", "Hub", "Modem only"], 1, "A router is used to connect a Local Area Network (LAN) to the internet."],
+
+  ["Hardware", "Which of the following is a valid IPv4 address?", ["200.67.53.432", "200.53.43", "200.67.53.43", "200.67.300.43"], 2, "An IPv4 address consists of four 8-bit numbers, each with a maximum value of 255."],
+
+  ["Hardware", "When multiple routes are available, what does a router attempt to find?", ["The longest route", "The most efficient route", "The oldest route", "The route with the most devices"], 1, "A router attempts to find the most efficient route, such as the fastest connection or the one with the least traffic."],
+
+  ["Hardware", "What information is included in a packet header when data is transmitted?", ["Sender and receiver IP addresses", "Only the file name", "The device password", "The operating system version"], 0, "The sender and receiver IP addresses are included in the packet header."],
+
+  ["Hardware", "Which type of cable is commonly used to connect computers to routers?", ["HDMI", "USB", "Ethernet", "VGA"], 2, "Routers typically use Ethernet cables to connect computers."],
+
+  ["Hardware", "What type of connectivity do many routers also offer?", ["Bluetooth only", "Wireless", "Satellite only", "Infrared"], 1, "Many routers offer wireless connectivity in addition to Ethernet connections."],
+
+  ["Hardware", "Which of the following is a valid IPv6 address?", ["0123:4567:89ab:gdef:0123:4567:89ab:cdef", "0123:4567:89ab:cdef:0123:4567:89ab:cdef", "0123:89ab:cdef:0123:4567:89ab:cdef", "0123:4567:89ab:cdef:0123:4567:89ab"], 1, "An IPv6 address contains 32 hexadecimal characters arranged in 8 groups of 4."],
+
+  ["Hardware", "How many bits does an IPv4 address consist of?", ["16 bits", "32 bits", "64 bits", "128 bits"], 1, "An IPv4 address consists of 32 bits."],
+
+  ["Hardware", "How many bits does an IPv6 address consist of?", ["32 bits", "48 bits", "64 bits", "128 bits"], 3, "An IPv6 address consists of 128 bits."],
+
+  ["Hardware", "Which of the following is a valid MAC address?", ["00:A0:C9:14:C8:29", "00:G0:C9:14:C8:29", "00:A0:C9:14:C8", "00:A0:C9:14:C8:290"], 0, "MAC addresses are usually written in hexadecimal using 12 digits. Hexadecimal uses digits 0–9 and letters A–F."],
+
+  ["Hardware", "How many bits long is a MAC address?", ["32 bits", "48 bits", "64 bits", "128 bits"], 1, "A MAC address is 48 bits long."],
+
+  ["Hardware", "Which part of a MAC address identifies the manufacturer?", ["The first 24 bits", "The last 24 bits", "The first 8 bits", "The last 8 bits"], 0, "The first 24 bits contain the manufacturer code."],
+
+  ["Hardware", "What do the second 24 bits of a MAC address represent?", ["The manufacturer code", "An automatically generated serial number", "The IP address", "The network password"], 1, "The second 24 bits are an automatically generated serial number unique to the device."],
+
+  ["Hardware", "Which storage type is most suitable for students who need to edit the same presentation simultaneously from home?", ["Local storage", "Cloud storage", "Optical storage", "Magnetic storage"], 1, "Cloud storage allows users to access data from different computers and potentially work on the same files simultaneously."],
+
+  ["Hardware", "Which type of storage requires an internet connection to access stored data?", ["Local storage", "Cloud storage", "RAM", "ROM"], 1, "Cloud storage requires an internet connection to access data stored online."],
+
+  ["Hardware", "What type of computer stores data in cloud storage systems?", ["Router", "Server", "Client", "Mainframe only"], 1, "A server is a computer located on the internet that stores data for cloud storage systems."],
+
+  ["Hardware", "What is virtual memory?", ["A type of permanent storage", "A system that allows secondary storage to be used as though it were RAM", "A type of processor", "A wireless connection"], 1, "Virtual memory allows the operating system to use secondary storage as though it were RAM."],
+
+  ["Hardware", "Which type of secondary storage has no moving parts?", ["HDD", "Optical storage", "Solid-state storage", "Magnetic tape"], 2, "Solid-state (flash) memory has no moving parts."],
+
+  ["Hardware", "Which logic gate is most commonly used by modern solid-state storage?", ["AND", "OR", "NOR", "NAND"], 3, "Modern solid-state storage commonly uses NAND flash technology."],
+
+  ["Hardware", "Which type of secondary storage uses a laser to create and read pits and lands?", ["Magnetic storage", "Optical storage", "Solid-state storage", "Cloud storage"], 1, "Optical storage uses lasers to read and create pits and lands."],
+
+  ["Hardware", "Which of the following is an example of magnetic storage?", ["HDD", "DVD", "SSD", "Blu-ray disc"], 0, "A Hard Disk Drive (HDD) is an example of magnetic storage."],
+
+  ["Hardware", "Which of the following is NOT an example of secondary storage?", ["HDD", "DVD", "CD", "ROM"], 3, "ROM is an example of primary storage, while HDD, DVD and CD are secondary storage."],
+
+  ["Hardware", "Why is primary storage faster than secondary storage?", ["It can be directly accessed by the CPU", "It has a larger capacity", "It uses the internet", "It is always removable"], 0, "Primary storage can be directly accessed by the CPU, making it faster than secondary storage."],
+
+  ["Hardware", "Which technology can store more data than a traditional barcode and allow customers to visit a manufacturer's website?", ["QR Code", "Magnetic stripe", "NFC card", "RFID tag"], 0, "QR codes can store more information than traditional barcodes and can direct users to websites."],
+
+  ["Hardware", "Which input device should be used to scan all sides of a physical toy character?", ["2D scanner", "Barcode scanner", "3D scanner", "Optical mouse"], 2, "A 3D scanner captures the three-dimensional shape of a physical object."],
+
+  ["Hardware", "Which input device is commonly used in airports to read passport data?", ["3D scanner", "2D scanner", "Microphone", "Touch screen"], 1, "A 2D scanner can copy data from a passport and input it into a computer."],
+
+  ["Hardware", "Which of the following is NOT an advantage of a barcode scanner?", ["It is faster than manually typing barcode numbers", "It reduces typing errors", "It is suitable for inputting text from a book page", "It can scan product barcodes"], 2, "A barcode scanner cannot be used to input individual pieces of text from a book."],
+
+  ["Hardware", "Which input device is used to record sound for playback?", ["Keyboard", "Microphone", "Optical mouse", "Scanner"], 1, "A microphone is an input device used to record sound."],
+
+  ["Hardware", "Both an optical mouse and a touch screen are examples of which type of device?", ["Storage devices", "Pointing devices", "Output devices", "Processing devices"], 1, "Both devices control a cursor or pointer on the screen."],
+
+  ["Hardware", "Which device is most suitable for inputting letters and numbers into a computer?", ["Microphone", "Scanner", "Keyboard", "Touch screen"], 2, "A keyboard is the most suitable device for entering letters and numbers."],
+
+  ["Hardware", "When the CPU tries to read data, which memory does it check first?", ["RAM", "ROM", "Cache memory", "Secondary storage"], 2, "The CPU first checks cache memory. If the data is not there, it accesses the comparatively slower RAM."],
+
+  ["Hardware", "Why does having multiple CPU cores increase performance?", ["Several instructions can be performed simultaneously", "The computer needs less storage", "The screen resolution increases", "The CPU uses no energy"], 0, "Multiple cores allow the CPU to perform several instructions simultaneously."],
+
+  ["Hardware", "What can happen when CPU clock speed increases?", ["Less heat and less energy use", "More heat and more energy use", "Less processing power", "The CPU stops using RAM"], 1, "Increasing clock speed can improve performance, but it also generates more heat and uses more energy."],
+
+  ["Hardware", "How can a CPU performing 3 billion cycles per second be expressed?", ["3 MHz", "3 GHz", "3 kHz", "3 THz"], 1, "3 billion cycles per second is equivalent to 3 gigahertz (GHz)."],
+
+  ["Hardware", "What is the ACC register used for?", ["To store the result of ALU calculations temporarily", "To store files permanently", "To connect to the internet", "To control the screen resolution"], 0, "The Accumulator (ACC) is a general-purpose register used by the ALU to temporarily store calculation results."]
+]
 ];
 
 let order = [];
